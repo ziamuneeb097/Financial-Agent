@@ -230,5 +230,6 @@ Parts of this code were developed with assistance:
 - Initial code structure
 - OpenAI SDK integration
 - Best practices
+- Some content of this README.md file is also AI generated
 
 The core logic, policy rules, and architectural decisions are human-designed. The guardrail strategy and tool-based approach were specifically implemented to ensure the agent stays within policy constraints.
