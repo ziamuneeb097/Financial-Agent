@@ -450,11 +450,15 @@ def run_conversation(customer: CustomerProfile, api_key: str, max_turns: int = 1
             user_input = input("Customer: ").strip()
         except (EOFError, KeyboardInterrupt):
             print("\n\n⚠️  Conversation interrupted")
-            break
+            agent.save_conversation()
+            print(f"\n{'='*60}\n")
+            return True  # Signal to exit
         
         if user_input.lower() in ['exit', 'quit', 'bye', 'goodbye']:
             print("\n👋 Ending conversation...")
-            break
+            agent.save_conversation()
+            print(f"\n{'='*60}\n")
+            return True  # Signal to exit
         
         if not user_input:
             continue
@@ -471,6 +475,7 @@ def run_conversation(customer: CustomerProfile, api_key: str, max_turns: int = 1
 
     agent.save_conversation()
     print(f"\n{'='*60}\n")
+    return False  # Don't exit, allow new customer selection
 
 
 def main():
@@ -515,11 +520,11 @@ def main():
     print(f"Selected: {selected_customer.name} ({selected_customer.id})")
     print(f"{'='*60}\n")
     
-    run_conversation(selected_customer, api_key, max_turns=10)
-
-
-if __name__ == "__main__":
-    main()
+    should_exit = run_conversation(selected_customer, api_key, max_turns=10)
+    
+    # Exit program if user ended conversation with exit command
+    if should_exit:
+        return
 
 
 if __name__ == "__main__":
