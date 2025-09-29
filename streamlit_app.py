@@ -1,3 +1,8 @@
+"""
+Access the deployed streamlit app at:
+https://financial-agent-test-project.streamlit.app/
+"""
+
 
 import streamlit as st
 import os
