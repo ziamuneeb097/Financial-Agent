@@ -1,0 +1,54 @@
+{
+    "customers": [
+      {
+        "id": "CUST-001",
+        "name": "Sarah Mitchell",
+        "amount_due": 120.0,
+        "days_late": 5,
+        "payment_history": "good",
+        "risk_score": 0.20,
+        "consent_to_store_transcript": true,
+        "transcript_retention_days": 365
+      },
+      {
+        "id": "CUST-002",
+        "name": "Marco Rossi",
+        "amount_due": 350.0,
+        "days_late": 20,
+        "payment_history": "average",
+        "risk_score": 0.50,
+        "consent_to_store_transcript": true,
+        "transcript_retention_days": 365
+      },
+      {
+        "id": "CUST-003",
+        "name": "Elena Müller",
+        "amount_due": 800.0,
+        "days_late": 60,
+        "payment_history": "poor",
+        "risk_score": 0.80,
+        "consent_to_store_transcript": true,
+        "transcript_retention_days": 365
+      },
+      {
+        "id": "CUST-004",
+        "name": "Jean Dubois",
+        "amount_due": 2400.0,
+        "days_late": 75,
+        "payment_history": "poor",
+        "risk_score": 0.82,
+        "consent_to_store_transcript": true,
+        "transcript_retention_days": 365
+      },
+      {
+        "id": "CUST-005",
+        "name": "Anna Kowalski",
+        "amount_due": 980.0,
+        "days_late": 32,
+        "payment_history": "average",
+        "risk_score": 0.60,
+        "consent_to_store_transcript": false,
+        "transcript_retention_days": 365
+      }
+    ]
+  }
