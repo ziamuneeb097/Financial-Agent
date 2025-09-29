@@ -473,7 +473,7 @@ def run_conversation(customer: CustomerProfile, api_key: str, max_turns: int = 1
     print(f"\n{'='*60}\n")
 
 
-def main():    
+def main():
     try:
         customers = load_customers("customers.json")
         print(f"✅ Loaded {len(customers)} customer personas\n")
@@ -481,9 +481,45 @@ def main():
         print("❌ Error: customers.json not found")
         print("Please ensure customers.json is in the same directory")
         return
-    for customer in customers:
-        run_conversation(customer, api_key, max_turns=5)
-        print("\n" + "="*80 + "\n")
+    
+    # Display customer list
+    print("Available customers:")
+    for idx, customer in enumerate(customers, 1):
+        print(f"{idx}. {customer.name} ({customer.id}) - €{customer.amount_due:.2f}, {customer.days_late} days late")
+    
+    # Customer selection loop
+    while True:
+        try:
+            selection = input("\nSelect a customer (1-5): ").strip()
+            
+            if not selection:
+                print("Please enter a number between 1 and 5")
+                continue
+            
+            customer_idx = int(selection) - 1
+            
+            if 0 <= customer_idx < len(customers):
+                selected_customer = customers[customer_idx]
+                break
+            else:
+                print(f"Please enter a number between 1 and {len(customers)}")
+        
+        except ValueError:
+            print("Invalid input. Please enter a number")
+        except (EOFError, KeyboardInterrupt):
+            print("\n\n👋 Exiting...")
+            return
+    
+    # Run conversation with selected customer
+    print(f"\n{'='*60}")
+    print(f"Selected: {selected_customer.name} ({selected_customer.id})")
+    print(f"{'='*60}\n")
+    
+    run_conversation(selected_customer, api_key, max_turns=10)
+
+
+if __name__ == "__main__":
+    main()
 
 
 if __name__ == "__main__":
